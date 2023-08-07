@@ -11,7 +11,7 @@ func main() {
 	r.GET("/api", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"message":     "ok",
-			"app_version": "1",
+			"app_version": "2",
 		})
 	})
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
