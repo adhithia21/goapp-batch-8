@@ -12,7 +12,9 @@ pipeline {
             steps {
                 echo 'Build/compile application'
                 sh 'go version'
+                sh 'ls'
                 sh 'GOCACHE=/tmp/ GOOS=linux GOARCH=amd64 go build -o applib'
+                sh 'ls'
             }
         }
         stage('Test') {
