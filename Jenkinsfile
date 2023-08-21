@@ -29,7 +29,7 @@ pipeline {
                 echo 'Test run application'
                 sh 'ls'
                 sh './applib &'
-                sh 'curl http://localhost:8080/api'
+                sh 'curl http://localhost:8081/api'
                 sh 'echo $?'
             }
         }
