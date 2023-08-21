@@ -33,9 +33,12 @@ pipeline {
             }
         }
         stage('Deploy') {
+            environment {
+                SSH_PRIVATE_KEY = credentials('golang-server-private-key')
+            }
             steps {
                 echo 'Deploy to server'
-                sh 'scp -o StrictHostKeyChecking=no applib adhithia@34.101.194.246:~/applib'
+                sh 'scp -o StrictHostKeyChecking=no -i "$SSH_PRIVATE_KEY" applib adhithia@34.101.194.246:~/applib'
             }
         }
     }
