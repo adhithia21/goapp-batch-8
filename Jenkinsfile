@@ -12,6 +12,7 @@ pipeline {
             steps {
                 echo 'Build/compile application'
                 sh 'go version'
+                sh 'sleep 60'
             }
         }
         stage('Test') {
