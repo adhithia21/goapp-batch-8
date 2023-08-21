@@ -20,7 +20,7 @@ pipeline {
         stage('Test') {
             agent {
                 docker {
-                    image 'golang:alpine3.16'
+                    image 'aditirvan/curl:1.0'
                     label 'docker'
                 }
             }
