@@ -15,6 +15,7 @@ pipeline {
                 sh 'ls'
                 sh 'GOCACHE=/tmp/ GOOS=linux GOARCH=amd64 go build -o applib'
                 sh 'ls'
+                stash name: 'GOAPP', includes: 'applib'
             }
         }
         stage('Test') {
@@ -38,6 +39,9 @@ pipeline {
             }
             steps {
                 echo 'Deploy to server'
+                sh 'ls'
+                unstash name: 'GOAPP'
+                sh 'ls'
                 sh 'scp -o StrictHostKeyChecking=no -i "$SSH_PRIVATE_KEY" applib adhithia@34.101.194.246:~/applib'
             }
         }
