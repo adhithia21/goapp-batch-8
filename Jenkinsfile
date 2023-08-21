@@ -35,7 +35,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploy to server'
-                sh 'scp applib adhithia@34.101.194.246:~/applib'
+                sh 'scp -o StrictHostKeyChecking=no applib adhithia@34.101.194.246:~/applib'
             }
         }
     }
