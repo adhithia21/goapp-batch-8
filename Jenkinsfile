@@ -11,7 +11,7 @@ pipeline {
             }
             steps {
                 echo 'Build/compile application'
-                sh 'ls'
+                sh 'go version'
             }
         }
         stage('Test') {
