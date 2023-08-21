@@ -26,6 +26,7 @@ pipeline {
             }
             steps {
                 echo 'Test run application'
+                sh 'ls'
                 sh './applib &'
                 sh 'curl http://localhost:8080/api'
             }
@@ -36,9 +37,9 @@ pipeline {
             }
         }
     }
-    // post { 
-    //     always { 
-    //         cleanWs()
-    //     }
-    // }
+    post { 
+        always { 
+            cleanWs()
+        }
+    }
 }
