@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Build/compile application'
+                sh 'ls'
             }
         }
         stage('Test') {
