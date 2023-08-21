@@ -18,8 +18,16 @@ pipeline {
             }
         }
         stage('Test') {
+            agent {
+                docker {
+                    image 'golang:alpine3.16'
+                    label 'docker'
+                }
+            }
             steps {
                 echo 'Test run application'
+                sh './applib &'
+                sh 'curl http://localhost:8080/api'
             }
         }
         stage('Deploy') {
@@ -28,9 +36,9 @@ pipeline {
             }
         }
     }
-    post { 
-        always { 
-            cleanWs()
-        }
-    }
+    // post { 
+    //     always { 
+    //         cleanWs()
+    //     }
+    // }
 }
