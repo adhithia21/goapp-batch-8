@@ -42,6 +42,7 @@ pipeline {
                 sh 'ls'
                 unstash name: 'GOAPP'
                 sh 'ls'
+                sh 'ssh -o StrictHostKeyChecking=no -i "$SSH_PRIVATE_KEY" adhithia@34.101.194.246 rm -rf applib'
                 sh 'scp -o StrictHostKeyChecking=no -i "$SSH_PRIVATE_KEY" applib adhithia@34.101.194.246:~/applib'
                 sh 'ssh -o StrictHostKeyChecking=no -i "$SSH_PRIVATE_KEY" adhithia@34.101.194.246 sudo systemctl restart applib'
             }
