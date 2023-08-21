@@ -52,5 +52,11 @@ pipeline {
         always { 
             cleanWs()
         }
+        success {
+            discordSend description: "Success deploy golang app", footer: "Jenkins", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discordapp.com/api/webhooks/1086510252838633472/VBOt5DABR6XyKwzQbFbUHbYy9r5D_MOny2Q6PjOiaJDl-u_RZpiJe_I2bHce5jSzpM-T"
+        }
+        failure {
+            discordSend description: "Failure deploy golang app", footer: "Jenkins", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discordapp.com/api/webhooks/1086510252838633472/VBOt5DABR6XyKwzQbFbUHbYy9r5D_MOny2Q6PjOiaJDl-u_RZpiJe_I2bHce5jSzpM-T"
+        }
     }
 }
