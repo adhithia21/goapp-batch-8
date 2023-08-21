@@ -28,12 +28,14 @@ pipeline {
                 echo 'Test run application'
                 sh 'ls'
                 sh './applib &'
-                sh 'curl http://localhost:8081/api'
+                sh 'curl http://localhost:8080/api'
+                sh 'echo $?'
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploy to server'
+                sh 'scp applib adhithia@34.101.194.246:~/applib'
             }
         }
     }
