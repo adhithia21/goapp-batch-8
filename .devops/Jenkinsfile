@@ -31,6 +31,9 @@ pipeline {
             }
         }
         stage('Deploy') {
+            environment {
+                KUBECONFIG = credentials('kubeconfig-jenkins')
+            }
             steps {
                 echo 'Deploy to server'
                 sh 'kubectl get nodes'
