@@ -37,6 +37,7 @@ pipeline {
             steps {
                 echo 'Deploy to server'
                 sh 'kubectl get nodes'
+                sh "sed -i 's/CHANGE_TAG/${BUILD_NUMBER}/g' .devops/kube/Deployment.yaml"
                 sh 'kubectl apply -f .devops/kube/Deployment.yaml'
                 sh 'kubectl apply -f .devops/kube/Service.yaml'
             }
