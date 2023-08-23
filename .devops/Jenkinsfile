@@ -8,7 +8,13 @@ pipeline {
             steps {
                 echo 'Build/compile application'
                 sh 'docker build -t adhithia21/goapp:${BUILD_NUMBER} .'
+    
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                    sh 'docker login --username=$USER --password=$PASS'
+                }
+
                 sh 'docker push adhithia21/goapp:${BUILD_NUMBER}'
+                
             }
         }
         stage('Test') {
