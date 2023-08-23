@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-config
+data:
+  myvalue: "Hello World"
+  {{- $data := .Values.data -}}
+  {{- $relname := .Release.Name -}}
+  {{- with .Values.favorite }}
+  drink: {{ .drink | repeat 3 | quote }}
+  food: {{ .food | upper | quote }}
+  data: {{ $data }}
+  releasename: {{ $relname }}
+  {{ end }}

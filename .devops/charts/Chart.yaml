@@ -1,0 +1,9 @@
+apiVersion: v2
+name: application
+version: 4.0.0
+appVersion: "4.0"
+description: Belajar helm charts
+maintainers: # (optional)
+  - name: Adhithia
+    email: adhithia.irvan@gmail.com
+    url: https://adhithia.me
