@@ -12,6 +12,8 @@ spec:
       labels:
         app: goapp
     spec:
+      imagePullSecrets:
+      - name: regcred
       containers:
       - name: goapp
         image: adhithia21/goapp:CHANGE_TAG
