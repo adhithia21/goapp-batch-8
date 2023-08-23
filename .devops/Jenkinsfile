@@ -12,9 +12,6 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                     sh 'docker login --username=$USER --password=$PASS'
                 }
-
-                sh 'docker push adhithia21/goapp:${BUILD_NUMBER}'
-                
             }
         }
         stage('Test') {
@@ -22,6 +19,15 @@ pipeline {
                 echo 'Test run application'
                 sh 'docker run -d --name goapp-run-test -p 8080:8080 adhithia21/goapp:${BUILD_NUMBER}'
                 sh 'curl http://localhost:8080/api'
+            }
+            post {
+                success {
+                    sh 'docker push adhithia21/goapp:${BUILD_NUMBER}'
+                }
+                always {
+                    sh 'docker rm -f goapp-run-test'
+                    sh 'docker image rm adhithia21/goapp:${BUILD_NUMBER}'
+                }
             }
         }
         stage('Deploy') {
