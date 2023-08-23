@@ -38,8 +38,12 @@ pipeline {
                 echo 'Deploy to server'
                 sh 'kubectl get nodes'
                 sh "sed -i 's/CHANGE_TAG/${BUILD_NUMBER}/g' .devops/kube/Deployment.yaml"
-                sh 'kubectl apply -f .devops/kube/Deployment.yaml'
-                sh 'kubectl apply -f .devops/kube/Service.yaml'
+                // sh 'kubectl apply -f .devops/kube/Deployment.yaml'
+                // sh 'kubectl apply -f .devops/kube/Service.yaml'
+
+                sh 'helm repo add app https://adhithia21.github.io/helm-chart8/charts'
+                sh 'helm repo update'
+                sh 'helm upgrade --install goapp app/application -n default --set image=adhithia21/goapp:${BUILD_NUMBER}'
             }
         }
     }
