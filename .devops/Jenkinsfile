@@ -20,6 +20,8 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Test run application'
+                sh 'docker run -d --name goapp-run-test -p 8080:8080 adhithia21/goapp:${BUILD_NUMBER}'
+                sh 'curl http://localhost:8080/api'
             }
         }
         stage('Deploy') {
