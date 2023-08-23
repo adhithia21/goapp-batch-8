@@ -24,7 +24,7 @@ pipeline {
                 success {
                     sh 'docker push adhithia21/goapp:${BUILD_NUMBER}'
                 }
-                always {
+                cleanup {
                     sh 'docker rm -f goapp-run-test'
                     sh 'docker image rm adhithia21/goapp:${BUILD_NUMBER}'
                 }
